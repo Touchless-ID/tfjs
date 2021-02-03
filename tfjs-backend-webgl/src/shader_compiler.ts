@@ -442,9 +442,24 @@ function getOutputPackedNDCoords(
 
   for (let b = 2; b < shape.length - 1; b++) {
     texelsInBatchN *= shape[shape.length - b - 1];
+
+    let tval = 0;
+    let tmis = 0;
+    let low = false;
+    if (texelsInBatchN > 65535) {
+      tval = Math.floor(Math.sqrt(texelsInBatchN));
+      tmis = texelsInBatchN - (tval * tval);
+      low = true;
+    } else {
+      tval = texelsInBatchN;
+    }
+
+    const str = low ? `((idx${b} * idx${b}) + imis${b})` : `idx${b}`;
+
     batches = `
-      int b${b} = index / ${texelsInBatchN};
-      index -= b${b} * ${texelsInBatchN};
+      int idx${b}=${tval}; int imis${b}=${tmis};
+      int b${b} = index / ${str};
+      index -= b${b} * ${str};
     ` + batches;
     coords = `b${b}, ` + coords;
   }
@@ -940,15 +955,27 @@ function getPackedSamplerND(inputInfo: InputInfo): string {
   const valuesPerRow = Math.ceil(shape[rank - 1] / 2);
   let texelsInBatch = valuesPerRow * Math.ceil(shape[rank - 2] / 2);
   let params = `int b, int row, int col`;
-  let index = `b * ${texelsInBatch} + (row / 2) * ${valuesPerRow} + (col / 2)`;
+  let tval = 0;
+  let tmis = 0;
+  let b = false;
+  if (texelsInBatch > 65535) {
+    tval = Math.floor(Math.sqrt(texelsInBatch));
+    tmis = texelsInBatch - (tval * tval);
+    b = true;
+  } else {
+    tval = texelsInBatch;
+  }
+  const tstr = `${b ? '((idx * idx) + ims)' : 'idx'}`;
+  let index = `b * ${tstr} + (row / 2) * ${valuesPerRow} + (col / 2)`;
   for (let b = 2; b < rank - 1; b++) {
     params = `int b${b}, ` + params;
     texelsInBatch *= shape[rank - b - 1];
-    index = `b${b} * ${texelsInBatch} + ` + index;
+    index = `b${b} * ${tstr} + ` + index;
   }
   const glsl = getGlslDifferences();
   return `
     vec4 ${funcName}(${params}) {
+      int idx = ${tval}; int ims = ${tmis};
       int index = ${index};
       int texR = index / ${texNumC};
       int texC = index - texR * ${texNumC};
