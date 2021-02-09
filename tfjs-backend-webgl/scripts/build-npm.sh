@@ -28,3 +28,4 @@ cp dist/tf-backend-webgl.min.js dist/miniprogram/index.js
 cp dist/tf-backend-webgl.min.js.map dist/miniprogram/index.js.map
 
 echo "Stored standalone library at dist/tf-backend-webgl(.min).js"
+npm pack

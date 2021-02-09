@@ -28,3 +28,4 @@ cp dist/tf-backend-wasm.js dist/miniprogram/index.js
 cp dist/tf-backend-wasm.js.map dist/miniprogram/index.js.map
 
 echo "Stored standalone library at dist/tf-backend-wasm(.min).js"
+npm pack

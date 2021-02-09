@@ -28,3 +28,4 @@ cp dist/tf-backend-cpu.min.js dist/miniprogram/index.js
 cp dist/tf-backend-cpu.min.js.map dist/miniprogram/index.js.map
 
 echo "Stored standalone library at dist/tf-backend-cpu(.min).js"
+npm pack

@@ -161,7 +161,7 @@
     estree-walker "^1.0.1"
     micromatch "^4.0.2"
 
-"@tensorflow/tfjs-backend-cpu@link:../tfjs-backend-cpu":
+"@tensorflow/tfjs-backend-cpu@file:../tfjs-backend-cpu":
   version "0.0.0"
   dependencies:
     "@types/seedrandom" "2.4.27"

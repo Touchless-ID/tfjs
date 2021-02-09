@@ -178,6 +178,7 @@ export async function standardizeWeights(
   }
 }
 
+// @ts-ignore
 /**
  * Apply per-sample weights on the loss values from a number of samples.
  *
@@ -185,6 +186,7 @@ export async function standardizeWeights(
  * @param sampleWeights Per-sample weight tensor of shape `[batchSize]`.
  * @returns Tensor of the same shape as`losses`.
  */
+// @ts-ignore
 export function computeWeightedLoss(losses: Tensor, sampleWeights: Tensor) {
   return mul(losses, sampleWeights);
 }
