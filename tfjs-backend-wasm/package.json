@@ -45,8 +45,8 @@
     "perf_hooks": false
   },
   "peerDependencies": {
-    "@tensorflow/tfjs-core": "file:../tfjs-core",
-    "@tensorflow/tfjs-backend-cpu": "file:../tfjs-backend-cpu"
+    "@tensorflow/tfjs-core": "../tfjs-core",
+    "@tensorflow/tfjs-backend-cpu": "../tfjs-backend-cpu"
   },
   "dependencies": {
     "@types/emscripten": "~0.0.34"

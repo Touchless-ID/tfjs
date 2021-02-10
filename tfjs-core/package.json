@@ -24,7 +24,7 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-typescript": "^3.0.0",
-    "@tensorflow/tfjs-backend-cpu": "file:../tfjs-backend-cpu",
+    "@tensorflow/tfjs-backend-cpu": "../tfjs-backend-cpu",
     "@types/jasmine": "~3.0.0",
     "@types/node": "~9.6.0",
     "@types/node-fetch": "~2.1.2",

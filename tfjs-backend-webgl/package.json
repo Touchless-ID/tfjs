@@ -23,7 +23,6 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-typescript": "^3.0.0",
-    "@tensorflow/tfjs-core": "file:../tfjs-core",
     "@types/jasmine": "~3.0.0",
     "clang-format": "~1.2.4",
     "jasmine": "~3.1.0",
@@ -45,7 +44,9 @@
     "tslint-no-circular-imports": "~0.5.0",
     "typescript": "3.5.3",
     "ts-morph": "^8.1.2",
-    "yalc": "~1.0.0-pre.21"
+    "yalc": "~1.0.0-pre.21",
+    "@tensorflow/tfjs-backend-cpu": "../tfjs-backend-cpu",
+    "@tensorflow/tfjs-core": "../tfjs-core"
   },
   "scripts": {
     "build-ci": "tsc && yarn bundle-ci",
@@ -76,7 +77,7 @@
     "seedrandom": "2.4.3"
   },
   "peerDependencies": {
-    "@tensorflow/tfjs-backend-cpu": "file:../tfjs-backend-cpu"
+    "@tensorflow/tfjs-core": "../tfjs-core"
   },
   "browser": {
     "util": false,
